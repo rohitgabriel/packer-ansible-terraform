@@ -9,6 +9,6 @@ resource "aws_instance" "pipeline" {
   vpc_security_group_ids = [aws_security_group.pipeline-instance.id]
 
   # the public SSH key
-  key_name = aws_key_pair.ssh-test-key2.key_name
+  key_name = aws_key_pair.pipeline-key.key_name
 }
 
