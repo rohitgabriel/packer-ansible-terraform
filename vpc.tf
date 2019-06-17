@@ -3,7 +3,7 @@ terraform {
     organization = "eit-demo"
 
     workspaces {
-      name = "demo-workspace"
+      name = "gitlab-server-workspace"
     }
   }
 }

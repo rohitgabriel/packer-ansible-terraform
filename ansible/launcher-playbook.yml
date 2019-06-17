@@ -1,7 +1,7 @@
 ---
 
 
-- name: Install nginx
+- name: Install and configure software on pipeline instance
   hosts: all
   become: true
 
@@ -9,22 +9,51 @@
     helloworld: Meow!
 
   tasks:
+
+
   - name: Add epel-release repo
     yum:
       name: epel-release
       state: present
 
-  - name: Install nginx
+  - name: Install packages
     yum:
-      name: nginx
+      name: 
+        - unzip
+        - centos-release-scl
+        - ansible
       state: present
 
-  - name: Insert Index Page
-    template:
-      src: templates/index.j2
-      dest: /usr/share/nginx/html/index.html
+  - name: Install python after scl above
+    yum:
+      name: 
+        - rh-python36
+      state: present
 
-  - name: Start NGiNX
-    service:
-      name: nginx
-      state: started
+  - name: Enable scl to make python 3.6 default
+    command: scl enable rh-python36 bash
+
+  - name: Download packer
+    unarchive:
+      src: https://releases.hashicorp.com/packer/1.4.1/packer_1.4.1_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+
+  - name: Download terraform
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+
+
+  # - name: Insert Index Page
+  #   template:
+  #     src: templates/index.j2
+  #     dest: /usr/share/nginx/html/index.html
+
+  # - name: Start NGiNX
+  #   service:
+  #     name: nginx
+  #     state: started
