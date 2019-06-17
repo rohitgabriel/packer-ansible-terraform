@@ -3,10 +3,12 @@ variable "AWS_REGION" {
 }
 
 variable "PATH_TO_PRIVATE_KEY" {
-  default = "C:\\Users\\RohitGabriel\\Documents\\terraform-assets\\mykey"
+  #default = "C:\\Users\\RohitGabriel\\Documents\\terraform-assets\\mykey"
+  default = "/home/ubuntu/keys/mykey"
 }
 
 variable "PATH_TO_PUBLIC_KEY" {
-  default = "C:\\Users\\RohitGabriel\\Documents\\terraform-assets\\mykey.pub"
+  #default = "C:\\Users\\RohitGabriel\\Documents\\terraform-assets\\mykey.pub"
+  default = "/home/ubuntu/keys/mykey.pub"
 }
 
