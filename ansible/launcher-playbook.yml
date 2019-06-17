@@ -30,8 +30,8 @@
         - rh-python36
       state: present
 
-  - name: Enable scl to make python 3.6 default
-    command: scl enable rh-python36 bash
+  # - name: Enable scl to make python 3.6 default
+  #   command: scl enable rh-python36 bash
 
   - name: Download packer
     unarchive:
