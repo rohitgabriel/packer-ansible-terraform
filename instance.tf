@@ -10,5 +10,9 @@ resource "aws_instance" "pipeline" {
 
   # the public SSH key
   key_name = aws_key_pair.pipeline-key.key_name
+
+  tags = {
+    Name = "pipeline-centos"
+  }
 }
 
