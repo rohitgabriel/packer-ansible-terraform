@@ -5,6 +5,9 @@
   hosts: all
   become: true
 
+  vars:
+    helloworld: Meow!
+
   tasks:
   - name: Add epel-release repo
     yum:
