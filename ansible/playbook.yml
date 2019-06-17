@@ -1,6 +1,11 @@
 ---
+hosts:
+  localhost:
+   vars:
+     ansible_connection: local
+     
 - name: Install nginx
-  hosts: host.name.ip
+  hosts: 127.0.0.1
   become: true
 
   tasks:
