@@ -1,0 +1,43 @@
+---
+- hosts: gitlab
+  become: yes
+  become_user: root
+
+  # vars:
+  #   helloworld: Meow!
+
+  tasks:
+    - name: Add epel-release repo
+      yum:
+        name: epel-release
+        state: present
+
+    - name: Install package with multiple repos enabled
+      yum:
+        name: sos
+        enablerepo: "epel"
+
+    - name: Install packages
+      yum:
+        name: 
+          - curl
+          - policycoreutils-python
+          - postfix
+        state: present
+
+    - name: Start postfix
+      service:
+        name: nginx
+        state: started
+
+    - name: Download gitlab repo script
+      get_url:
+        url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh
+        dest: /tmp/gitlab-script.sh
+        mode: '0755'
+
+    - name: Run above script
+        command: /tmp/gitlab-script.sh
+
+    
+    

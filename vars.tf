@@ -11,3 +11,7 @@ variable "PATH_TO_PUBLIC_KEY" {
   #default = "C:\\Users\\RohitGabriel\\Documents\\terraform-assets\\mykey.pub"
   default = "/home/ubuntu/keys/mykey.pub"
 }
+
+variable "ssh_user" {
+  default = "centos"
+}

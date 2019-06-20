@@ -1,0 +1,6 @@
+    
+gitlab:
+  hosts:
+    all
+  vars:
+    ansible_ssh_user: centos

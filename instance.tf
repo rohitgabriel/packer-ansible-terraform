@@ -14,5 +14,23 @@ resource "aws_instance" "pipeline" {
   tags = {
     Name = "pipeline-centos"
   }
+
+  #############################################################################
+  # This is the 'local exec' method.  
+  # Ansible runs from the same host you run Terraform from
+  #############################################################################
+
+  provisioner "remote-exec" {
+    inline = ["echo 'Hello World'"]
+
+    connection {
+      type        = "ssh"
+      user        = "${var.ssh_user}"
+      private_key = "${file("${var.PATH_TO_PRIVATE_KEY}")}"
+    }
+  }
+  provisioner "local-exec" {
+    command = "ansible-playbook -i '${aws_instance.pipeline.private_ip},' --private-key ${var.PATH_TO_PRIVATE_KEY} ansible-terraform/gitlab-install-playbook.yml"
+  }
 }
 
