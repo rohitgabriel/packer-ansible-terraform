@@ -31,7 +31,7 @@ resource "aws_instance" "pipeline" {
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook -u '${var.ssh_user}' -i '${aws_instance.pipeline.public_ip}' --private-key ${var.PATH_TO_PRIVATE_KEY} ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=${aws_instance.pipeline.public_ip}'"
+    command = "ansible-playbook -u '${var.ssh_user}' -i ansible-terraform/hosts.yml --private-key ${var.PATH_TO_PRIVATE_KEY} ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=${aws_instance.pipeline.public_dns}'"
   }
 }
 
