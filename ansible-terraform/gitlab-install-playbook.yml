@@ -1,10 +1,12 @@
 ---
-- hosts: gitlab
-  become: yes
-  become_user: root
+- name: Prepare centos for gitlab install
+  hosts: "{{ variable_host }}"
+  # vars_files:
+  #   - vars/iim.yml
+  #   - vars/ihs.yml
+  # hosts: all
+  become: true
 
-  # vars:
-  #   helloworld: Meow!
 
   tasks:
     - name: Add epel-release repo
@@ -27,7 +29,7 @@
 
     - name: Start postfix
       service:
-        name: nginx
+        name: postfix
         state: started
 
     - name: Download gitlab repo script
@@ -37,7 +39,7 @@
         mode: '0755'
 
     - name: Run above script
-        command: /tmp/gitlab-script.sh
+      command: /tmp/gitlab-script.sh
 
     
     

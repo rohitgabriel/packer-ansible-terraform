@@ -9,11 +9,18 @@ resource "aws_security_group" "pipeline-instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-    ingress {
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["202.180.77.121/32"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -27,6 +34,9 @@ resource "aws_security_group" "pipeline-instance" {
     to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["202.180.77.121/32"]
+  }
+  tags = {
+    Name = "allow-ssh"
   }
 }
 

@@ -1,6 +1,4 @@
 ---
-
-
 - name: Install and configure software on pipeline instance
   hosts: all
   become: true
@@ -22,6 +20,7 @@
         - unzip
         - centos-release-scl
         - ansible
+        - boto
       state: present
 
   - name: Install python after scl above

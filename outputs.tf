@@ -1,7 +1,7 @@
-output "instance" {
+output "pipeline-publicip" {
   value = aws_instance.pipeline.public_ip
 }
 
-output "instance" {
+output "pipeline-publicdns" {
   value = aws_instance.pipeline.public_dns
 }

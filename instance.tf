@@ -24,13 +24,14 @@ resource "aws_instance" "pipeline" {
     inline = ["echo 'Hello World'"]
 
     connection {
+      host = self.public_ip
       type        = "ssh"
       user        = "${var.ssh_user}"
       private_key = "${file("${var.PATH_TO_PRIVATE_KEY}")}"
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook -i '${aws_instance.pipeline.private_ip},' --private-key ${var.PATH_TO_PRIVATE_KEY} ansible-terraform/gitlab-install-playbook.yml"
+    command = "ansible-playbook -u '${var.ssh_user}' -i '${aws_instance.pipeline.public_ip}' --private-key ${var.PATH_TO_PRIVATE_KEY} ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=${aws_instance.pipeline.public_ip}'"
   }
 }
 

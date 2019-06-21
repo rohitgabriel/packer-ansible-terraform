@@ -1,0 +1,25 @@
+---
+- name: Install and configure gitlab
+  hosts: "{{ variable_host }}"  
+  become: true
+  # vars_files:
+  #   - vars/iim.yml
+  #   - vars/ihs.yml
+  # hosts: all
+  # vars:
+  #   helloworld: Meow!
+
+  tasks:
+
+    - name: Install packages
+      yum:
+        name:
+          - gitlab-ce
+        state: present
+      environment:
+        EXTERNAL_URL: "{{ pipeline_hostname }}"
+
+    - name: Run configure script
+      command: gitlab-ctl reconfigure
+      register: configure_result
+    - debug: var=configure_result

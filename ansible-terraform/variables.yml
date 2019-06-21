@@ -1,0 +1,2 @@
+ansible_ssh_user: centos
+pipeline_hostname: ec2-54-66-197-79.ap-southeast-2.compute.amazonaws.com
