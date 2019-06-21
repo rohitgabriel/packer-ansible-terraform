@@ -20,7 +20,7 @@
         - unzip
         - centos-release-scl
         - ansible
-        - boto
+        - golang-go
       state: present
 
   - name: Install python after scl above
