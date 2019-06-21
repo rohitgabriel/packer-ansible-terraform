@@ -25,7 +25,6 @@
           - curl
           - policycoreutils-python
           - postfix
-          - golang-go
         state: present
 
     - name: Start postfix
