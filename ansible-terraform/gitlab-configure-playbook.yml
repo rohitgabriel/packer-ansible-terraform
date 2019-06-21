@@ -8,6 +8,9 @@
   # hosts: all
   # vars:
   #   helloworld: Meow!
+  vars_files:
+    - variables.yml
+
 
   tasks:
 
