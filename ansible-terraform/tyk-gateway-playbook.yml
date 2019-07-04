@@ -1,0 +1,54 @@
+---
+- name: Install and configure gitlab
+  hosts: "{{ variable_host }}"  
+  become: true
+  # vars_files:
+  #   - vars/iim.yml
+  #   - vars/ihs.yml
+  # hosts: all
+  # vars:
+  #   helloworld: Meow!
+  vars_files:
+    - tyk-variables.yml
+
+
+  tasks:
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+
+  - name: Install packages
+    yum:
+        name:
+          - pygpgme
+          - yum-utils
+          - wget
+        state: present
+
+  - name: Insert Index Page
+    template:
+      src: templates/tyk_tyk-gateway.repo
+      dest: /etc/yum.repos.d/tyk_tyk-gateway.repo
+
+  - name: Run enable repo
+    command: yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-gateway' --enablerepo=epel
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: Install tyk
+    yum:
+      name:
+        - tyk-gateway
+
+  - name: Run enable repo
+    command: /opt/tyk-gateway/install/setup.sh --dashboard=1 --listenport=8080 --redishost=localhost --redisport=6379
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: Start tyk-gateway
+    service:
+      name: tyk-gateway
+      state: started
+
+      

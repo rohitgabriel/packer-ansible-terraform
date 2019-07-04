@@ -3,7 +3,7 @@
 Install packer, terraform, ansible, gitlab, gitlab runner, awscli
 ```
 
-## Pre installation
+## Pre installation on localhost
 ```
 aws configure
 vi ~/.terraformrc
@@ -12,9 +12,32 @@ credentials "app.terraform.io" {
 }
 ```
 
-## Setup bastion host
+## Configure local host with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook  ansible/selfconfig-playbook.yml
+```
+
+## Provision pipeline host with terraform, packer, ansible
 ```
 cd packer-ansible-terraform
 ./build-and-launch.sh
 ```
 
+## Install Mongodb with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/mongodb-playbook.yml --extra-vars 'variable_host=pipeline'
+```
+
+## Install redis with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/redis-playbook.yml --extra-vars 'variable_host=pipeline'
+```
+
+## Install tyk gateway with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/tyk-gateway-playbook.yml --extra-vars 'variable_host=pipeline'
+```
