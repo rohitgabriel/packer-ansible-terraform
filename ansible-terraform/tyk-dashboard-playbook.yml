@@ -43,7 +43,7 @@
         - tyk-dashboard
 
   - name: Run enable repo
-    command: /opt/tyk-dashboard/install/setup.sh --listenport="{{ gateway-port }}" --redishost=localhost --redisport=6379 --mongo=mongodb://localhost/tyk_analytics --tyk_api_hostname="{{ tyk-hostname }}" --tyk_node_hostname=http://localhost --tyk_node_port=8081 --portal_root=/portal --domain="{{ tyk-hostname }}"
+    command: "/opt/tyk-dashboard/install/setup.sh --listenport={{ gateway-port }} --redishost=localhost --redisport=6379 --mongo=mongodb://localhost/tyk_analytics --tyk_api_hostname="{{ tyk-hostname }}" --tyk_node_hostname=http://localhost --tyk_node_port=8081 --portal_root=/portal --domain={{ tyk-hostname }}"
     register: configure_result
   - debug: var=configure_result
 
