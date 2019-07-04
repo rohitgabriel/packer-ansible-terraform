@@ -2,12 +2,6 @@
 - name: Install and configure tyk gateway
   hosts: "{{ variable_host }}"  
   become: true
-  # vars_files:
-  #   - vars/iim.yml
-  #   - vars/ihs.yml
-  # hosts: all
-  # vars:
-  #   helloworld: Meow!
   vars_files:
     - tyk-variables.yml
   
@@ -36,6 +30,11 @@
     command: yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-dashboard' --enablerepo=epel
     register: configure_result
   - debug: var=configure_result
+
+  # - name: Install tyk-mongo
+  #   yum:
+  #     name:
+  #       - mongodb-org
 
   - name: Install tyk-dashboard
     yum:
