@@ -1,0 +1,56 @@
+---
+- name: Install and configure tyk gateway
+  hosts: "{{ variable_host }}"  
+  become: true
+  # vars_files:
+  #   - vars/iim.yml
+  #   - vars/ihs.yml
+  # hosts: all
+  # vars:
+  #   helloworld: Meow!
+  vars_files:
+    - tyk-variables.yml
+
+
+  tasks:
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+
+  - name: Install packages
+    yum:
+        name:
+          - python34
+          - pygpgme
+          - yum-utils
+          - wget
+        state: present
+
+  - name: copy repo file
+    template:
+      src: templates/tyk_tyk-dashboard.repo
+      dest: /etc/yum.repos.d/tyk_tyk-dashboard.repo
+
+  - name: Run enable repo
+    command: yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-dashboard' --enablerepo=epel
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: Install tyk-dashboard
+    yum:
+      name:
+        - tyk-dashboard
+
+  - name: Run enable repo
+    command: /opt/tyk-dashboard/install/setup.sh --listenport="{{ gateway-port }}" --redishost=localhost --redisport=6379 --mongo=mongodb://localhost/tyk_analytics --tyk_api_hostname="{{ tyk-hostname }}" --tyk_node_hostname=http://localhost --tyk_node_port=8081 --portal_root=/portal --domain="{{ tyk-hostname }}"
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: enable dashboard
+    systemd:
+      name: tyk-dashboard
+      state: started
+      enabled: True
+
+      

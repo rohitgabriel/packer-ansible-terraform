@@ -36,8 +36,8 @@ resource "aws_security_group" "pipeline-instance" {
     cidr_blocks = ["202.180.77.121/32"]
   }
   ingress {
-    from_port   = 8081
-    to_port     = 8081
+    from_port   = 3001
+    to_port     = 3001
     protocol    = "tcp"
     cidr_blocks = ["202.180.77.121/32"]
   }
