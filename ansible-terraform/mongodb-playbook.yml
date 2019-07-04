@@ -3,9 +3,13 @@
   hosts: "{{ variable_host }}"
   become: true
   vars:
-      mongodb_version: 4.0
-      mongodb_data_path: /var/lib/mongodb
-      ansible_python_interpreter: auto
+      mongodb_version: "3.6"
+# names and passwords for administrative users
+      mongodb_user_admin_name: siteUserAdmin
+      mongodb_user_admin_password: passw0rd
+
+      mongodb_root_admin_name: siteRootAdmin
+      mongodb_root_admin_password: passw0rd
   tasks:
  #   - name: Install mongodb galaxy role
 
