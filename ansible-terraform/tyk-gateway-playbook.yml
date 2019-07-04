@@ -42,7 +42,7 @@
         - tyk-gateway
 
   - name: Run enable repo
-    command: /opt/tyk-gateway/install/setup.sh --dashboard=1 --listenport=8080 --redishost=localhost --redisport=6379
+    command: /opt/tyk-gateway/install/setup.sh --dashboard=1 --listenport=8081 --redishost=localhost --redisport=6379
     register: configure_result
   - debug: var=configure_result
 
