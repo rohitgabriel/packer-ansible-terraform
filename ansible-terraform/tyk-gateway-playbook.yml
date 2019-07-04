@@ -26,7 +26,7 @@
           - wget
         state: present
 
-  - name: Insert Index Page
+  - name: copy repo file
     template:
       src: templates/tyk_tyk-gateway.repo
       dest: /etc/yum.repos.d/tyk_tyk-gateway.repo
