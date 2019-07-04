@@ -1,0 +1,55 @@
+---
+- name: Install and configure gitlab
+  hosts: "{{ variable_host }}"  
+  become: true
+  # vars_files:
+  #   - vars/iim.yml
+  #   - vars/ihs.yml
+  # hosts: all
+  # vars:
+  #   helloworld: Meow!
+  vars_files:
+    - tyk-variables.yml
+
+
+  tasks:
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+
+  - name: Install packages
+    yum:
+        name:
+          - pygpgme
+          - yum-utils
+          - wget
+        state: present
+
+  - name: copy repo file
+    template:
+      src: templates/tyk_tyk-pump.repo
+      dest: /etc/yum.repos.d/tyk_tyk-pump.repo
+
+  - name: Run enable repo
+    command: yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-pump'
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: Install tyk-pump
+    yum:
+      name:
+        - tyk-pump
+
+  - name: Run enable repo
+    command: /opt/tyk-pump/install/setup.sh --redishost=localhost --redisport=6379 --mongo=mongodb://localhost/tyk_analytics
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: enable pump
+  systemd:
+    name: tyk-pump
+    state: started
+    enabled: True
+
+      

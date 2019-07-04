@@ -1,6 +1,8 @@
 # Automating provisioning with packer, ansible and terraform
 ```
 Install packer, terraform, ansible, gitlab, gitlab runner, awscli
+
+packer-ansible-terraform$ cd .. ; rm -rf packer-ansible-terraform; git clone https://github.com/rohitgabriel/packer-ansible-terraform.git; cd packer-ansible-terraform
 ```
 
 ## Pre installation on localhost
@@ -40,4 +42,16 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 ```
 cd packer-ansible-terraform
 ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/tyk-gateway-playbook.yml --extra-vars 'variable_host=pipeline'
+```
+
+## Install pump with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/pump-install-playbook.yml --extra-vars 'variable_host=pipeline'
+```
+
+## Install tyk dashboard with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/tyk-dashboard-playbook.yml --extra-vars 'variable_host=pipeline'
 ```
