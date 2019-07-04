@@ -1,0 +1,13 @@
+---
+- name: Install mongodb
+  hosts: "{{ variable_host }}"
+  become: true
+  vars:
+      mongodb_version: 4.0
+      mongodb_data_path: /var/lib/mongodb
+      ansible_python_interpreter: auto
+  tasks:
+    - name: Install mongodb galaxy role
+
+  roles:
+    - girder.mongodb
