@@ -52,5 +52,14 @@
       name: tyk-dashboard
       state: started
       enabled: True
+  
+  - name: Add license key
+    command: sed -i 's/"license_key": ""/"license_key": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkX25vZGVzIjoiZjE2OTI5MWMtNTFlOS00NGUzLTZkNmYtNmZjYTY2ZjEyMmI1IiwiZXhwIjoxNTY5OTgzNzAzLCJvd25lciI6IjVkMWQ2NWQ3NDVmOTJlMjE4ZGRkYWMzMiJ9.XPUepJOU152GdeBMII7cxgpT1xAF0Jmr2un4cMjEQ9517-53joqh02uu3Qq7lL0gt6Q5WYbWJ7Ipu2kBUvGnCermyV6b1HRnUXyk2L6jZXsS7vxDJRYPx6y3Tq1Noz3k1mVqjb3trRXsRMZZ_5QVLozKAT-T3-zEPZuJvbOOO_jQQOZ2G0en1t8KqH-OMd-EiCSQV4I5S2NBEjARTCZ30mznQP0BA6PirQooK1F9G0sHkdkNdGly11LhgIqfZw2VeX3Bp4RT_9RCemxdAIkN38Tb-ThYunVi0yKdMLdXOOnj9yCZjk2qBr3u5PKRM3nb4aKM48zlo_KXUxynb7ihTQ"/g' /opt/tyk-dashboard/tyk_analytics.conf
+  
+  - name: restart service tyk-dashboard
+    systemd:
+      state: restarted
+      daemon_reload: yes
+      name: tyk-dashboard
 
       
