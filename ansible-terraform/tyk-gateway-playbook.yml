@@ -1,5 +1,5 @@
 ---
-- name: Install and configure gitlab
+- name: Install and configure tyk gateway
   hosts: "{{ variable_host }}"  
   become: true
   # vars_files:

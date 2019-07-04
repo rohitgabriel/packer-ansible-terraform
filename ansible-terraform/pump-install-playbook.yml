@@ -1,5 +1,5 @@
 ---
-- name: Install and configure gitlab
+- name: Install and configure tyk pump
   hosts: "{{ variable_host }}"  
   become: true
   # vars_files:
@@ -47,9 +47,9 @@
   - debug: var=configure_result
 
   - name: enable pump
-  systemd:
-    name: tyk-pump
-    state: started
-    enabled: True
+    systemd:
+      name: tyk-pump
+      state: started
+      enabled: True
 
       
