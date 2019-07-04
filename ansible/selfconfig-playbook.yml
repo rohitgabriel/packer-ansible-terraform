@@ -11,7 +11,7 @@
     when: foo is defined and foo == '' and foo != None
 
   - name: Install mongodb galaxy role
-    command: ansible-galaxy install girder.mongodb
+    command: ansible-galaxy install undergreen.mongodb
     register: configure_result
   - debug: var=configure_result
 

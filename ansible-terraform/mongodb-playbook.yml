@@ -7,7 +7,7 @@
       mongodb_data_path: /var/lib/mongodb
       ansible_python_interpreter: auto
   tasks:
-    - name: Install mongodb galaxy role
+ #   - name: Install mongodb galaxy role
 
   roles:
-    - girder.mongodb
+    - undergreen.mongodb
