@@ -1,0 +1,11 @@
+---
+- name: Install redis
+  hosts: "{{ variable_host }}"
+  become: true
+  vars:
+      redis_enablerepo: epel
+  tasks:
+ #   - name: Install  
+
+  roles:
+    - geerlingguy.redis
