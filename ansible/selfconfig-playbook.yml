@@ -12,5 +12,10 @@
 
   - name: Install mongodb galaxy role
     command: ansible-galaxy install girder.mongodb
-      register: configure_result
-    - debug: var=configure_result
+    register: configure_result
+  - debug: var=configure_result
+
+  - name: Install redis galaxy role
+    command: ansible-galaxy install geerlingguy.redis
+    register: configure_result
+  - debug: var=configure_result
