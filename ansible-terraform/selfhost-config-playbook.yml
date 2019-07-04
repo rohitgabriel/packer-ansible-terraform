@@ -1,0 +1,16 @@
+- hosts: 127.0.0.1
+
+  vars:
+          #foo: ""          # foo is defined and foo == '' and foo != None
+          #bar:             # bar is defined and bar != '' and bar == None
+    ansible_python_interpreter: auto
+  tasks:
+    - name: Install mongodb galaxy role
+
+  # - debug:
+  #     msg: "foo is defined and foo == '' and foo != None"
+  #   when: foo is defined and foo == '' and foo != None
+  roles:
+  - role: girder.mongodb
+    mongodb_version: 4.0
+    mongodb_data_path: /var/lib/mongodb
