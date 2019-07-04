@@ -3,7 +3,8 @@
   hosts: "{{ variable_host }}"
   become: true
   gather_facts: false
-  vars:
+  vars_files:
+    - tyk-variables.yml
 
   tasks:
 
@@ -38,3 +39,8 @@
       state: restarted
       daemon_reload: yes
       name: tyk-dashboard
+
+  - name: Bootstrap
+    command: /opt/tyk-dashboard/install/bootstrap.sh "{{ tyk_hostname }}"
+    register: configure_result
+  - debug: var=configure_result
