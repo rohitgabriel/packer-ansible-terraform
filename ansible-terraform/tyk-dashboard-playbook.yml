@@ -10,7 +10,7 @@
   #   helloworld: Meow!
   vars_files:
     - tyk-variables.yml
-
+  
 
   tasks:
   - name: Add epel-release repo
@@ -42,8 +42,8 @@
       name:
         - tyk-dashboard
 
-  - name: Run enable repo
-    command: "/opt/tyk-dashboard/install/setup.sh --listenport={{ gateway-port }} --redishost=localhost --redisport=6379 --mongo=mongodb://localhost/tyk_analytics --tyk_api_hostname="{{ tyk-hostname }}" --tyk_node_hostname=http://localhost --tyk_node_port=8081 --portal_root=/portal --domain={{ tyk-hostname }}"
+  - name: Run setup
+    command: /opt/tyk-dashboard/install/setup.sh --listenport="{{ gateway_port }}" --redishost=localhost --redisport=6379 --mongo=mongodb://localhost/tyk_analytics --tyk_api_hostname="{{ tyk_hostname }}" --tyk_node_hostname=http://localhost --tyk_node_port=8081 --portal_root=/portal --domain="{{ tyk_hostname }}"
     register: configure_result
   - debug: var=configure_result
 
