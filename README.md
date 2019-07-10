@@ -55,3 +55,10 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 cd packer-ansible-terraform
 ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/tyk-dashboard-playbook.yml --extra-vars 'variable_host=pipeline'
 ```
+
+## Add license and bootstrap node
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/license-tyk-dashboard.yml --extra-vars 'variable_host=pipeline'
+```
+
