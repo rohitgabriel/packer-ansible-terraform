@@ -5,6 +5,7 @@
   gather_facts: false
   vars_files:
     - tyk-variables.yml
+    - vault/tyk-vault.yml
 
   tasks:
 
