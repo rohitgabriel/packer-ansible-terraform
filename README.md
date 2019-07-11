@@ -59,11 +59,11 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 ## Create ansible vault to encrypt license
 ```
 cd packer-ansible-terraform
-ansible-vault encrypt vault/tyk-vault.yml --vault-password-file .vault_pass.txt
+ansible-vault encrypt ansible-terraform/vault/tyk-vault.yml --vault-password-file .vault_pass.txt
 ```
 ## Add license and bootstrap node
 ```
 cd packer-ansible-terraform
-ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/license-tyk-dashboard.yml --extra-vars 'variable_host=pipeline'
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/license-tyk-dashboard.yml --extra-vars 'variable_host=pipeline' --vault-password-file .vault_pass.txt
 ```
 
