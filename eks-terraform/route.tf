@@ -1,66 +1,90 @@
 # route tables
-resource "aws_route_table" "intercity-vpc-network-uat-RouteTableAPublic" {
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+resource "aws_route_table" "main-public" {
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.intercity-vpc-network-uat-internetgw.id
+    gateway_id = aws_internet_gateway.main-gw.id
   }
 
   tags = {
-    Name = "TourCatalog-uat-A-Public"
+    Name = "main-public-1"
   }
 }
 
-resource "aws_route_table" "intercity-vpc-network-uat-RouteTableBPublic" {
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+resource "aws_route_table" "main-RouteTableAPublic" {
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.intercity-vpc-network-uat-internetgw.id
+    gateway_id = aws_internet_gateway.main-internetgw.id
   }
 
   tags = {
-    Name = "TourCatalog-uat-B-Public"
+    Name = "main-B-Public"
   }
 }
 
-resource "aws_route_table" "intercity-vpc-network-uat-RouteTableCPublic" {
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+resource "aws_route_table" "main-RouteTableBPublic" {
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.intercity-vpc-network-uat-internetgw.id
+    gateway_id = aws_internet_gateway.main-internetgw.id
   }
 
   tags = {
-    Name = "TourCatalog-uat-C-Public"
+    Name = "main-B-Public"
   }
 }
 
-resource "aws_route_table" "intercity-vpc-network-uat-RouteTableAPrivate" {
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+resource "aws_route_table" "main-RouteTableCPublic" {
+  vpc_id = aws_vpc.main.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main-internetgw.id
+  }
 
   tags = {
-    Name = "TourCatalog-uat-A-Private"
+    Name = "main-C-Public"
   }
 }
 
-resource "aws_route_table" "intercity-vpc-network-uat-RouteTableBPrivate" {
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+resource "aws_route_table" "main-RouteTableAPrivate" {
+  vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "TourCatalog-uat-B-Private"
+    Name = "main-A-Private"
   }
 }
 
-resource "aws_route_table" "intercity-vpc-network-uat-RouteTableCPrivate" {
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+resource "aws_route_table" "main-RouteTableBPrivate" {
+  vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "TourCatalog-uat-C-Private"
+    Name = "main-B-Private"
   }
 }
-# route associations 
-resource "aws_route_table_association" "intercity-vpc-network-uat-RouteTableCPublic" {
-  subnet_id      = aws_subnet.intercity-vpc-network-uat-SubnetCPublic.id
-  route_table_id = aws_route_table.intercity-vpc-network-uat-RouteTableCPublic.id
+
+resource "aws_route_table" "main-RouteTableCPrivate" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "main-C-Private"
+  }
 }
 
+
+
+# route associations public
+resource "aws_route_table_association" "main-public-1-a" {
+  subnet_id      = aws_subnet.main-public-1.id
+  route_table_id = aws_route_table.main-public.id
+}
+
+resource "aws_route_table_association" "main-public-2-a" {
+  subnet_id      = aws_subnet.main-public-2.id
+  route_table_id = aws_route_table.main-public.id
+}
+
+resource "aws_route_table_association" "main-public-3-a" {
+  subnet_id      = aws_subnet.main-public-3.id
+  route_table_id = aws_route_table.main-public.id
+}

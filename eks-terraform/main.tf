@@ -3,7 +3,7 @@ terraform {
     organization = "eit-demo"
 
     workspaces {
-      name = "intercity-uat-eks"
+      name = "gitlab-server-workspace"
     }
   }
 }
@@ -35,12 +35,12 @@ module "eks" {
   cluster_name = local.cluster_name
   
   subnets      = [
-      # aws_subnet.intercity-vpc-network-uat-SubnetAPrivate.id,
-      # aws_subnet.intercity-vpc-network-uat-SubnetBPrivate.id,
-      # aws_subnet.intercity-vpc-network-uat-SubnetCPrivate.id,
-      aws_subnet.intercity-vpc-network-uat-SubnetAPublic.id,
-      aws_subnet.intercity-vpc-network-uat-SubnetBPublic.id,
-      aws_subnet.intercity-vpc-network-uat-SubnetCPublic.id
+      # aws_subnet.main-SubnetAPrivate.id,
+      # aws_subnet.main-SubnetBPrivate.id,
+      # aws_subnet.main-SubnetCPrivate.id,
+      aws_subnet.main-SubnetAPublic.id,
+      aws_subnet.main-SubnetBPublic.id,
+      aws_subnet.main-SubnetCPublic.id
       
     ]
 
@@ -50,7 +50,7 @@ module "eks" {
     GithubOrg   = "terraform-aws-modules"
   }
 
-  vpc_id = aws_vpc.intercity-vpc-network-uat-VPC.id
+  vpc_id = aws_vpc.main.id
 
 
   worker_groups = [
@@ -71,6 +71,6 @@ module "eks" {
     # },
   ]
   #map_roles                            = var.map_roles
-  map_users                            = var.map_users
+  #map_users                            = var.map_users
   #map_accounts                         = var.map_accounts
 }

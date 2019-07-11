@@ -4,7 +4,7 @@ variable "region" {
 
 
 variable "instance-type" {
-  default = "m5.large"
+  default = "t2.medium"
 }
 
 # variable "map_accounts" {
@@ -30,21 +30,21 @@ variable "instance-type" {
 #   ]
 # }
 
-variable "map_users" {
-  description = "Additional IAM users to add to the aws-auth configmap."
-  type        = list(map(string))
+# variable "map_users" {
+#   description = "Additional IAM users to add to the aws-auth configmap."
+#   type        = list(map(string))
 
-  default = [
-    {
-      user_arn = "arn:aws:iam::832247244038:user/devops-admin"
-      username = "devops-admin"
-      group    = "system:masters"
-    }
-#     },
+#   default = [
 #     {
-#       user_arn = "arn:aws:iam::66666666666:user/user2"
-#       username = "user2"
+#       user_arn = "arn:aws:iam::832247244038:user/devops-admin"
+#       username = "devops-admin"
 #       group    = "system:masters"
-#     },
-  ]
-}
+#     }
+# #     },
+# #     {
+# #       user_arn = "arn:aws:iam::66666666666:user/user2"
+# #       username = "user2"
+# #       group    = "system:masters"
+# #     },
+#   ]
+# }
