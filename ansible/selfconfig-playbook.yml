@@ -19,3 +19,9 @@
     command: ansible-galaxy install geerlingguy.redis
     register: configure_result
   - debug: var=configure_result
+
+  - name: Install helm
+    unarchive: 
+      src: https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes

@@ -14,6 +14,11 @@
       name: epel-release
       state: present
 
+  - name: copy repo file
+    template:
+      src: templates/kubernetes.repo
+      dest: /etc/yum.repos.d/kubernetes.repo
+
   - name: Install packages
     yum:
       name: 
@@ -21,6 +26,7 @@
         - centos-release-scl
         - ansible
         - golang-go
+        - kubectl
       state: present
 
   - name: Install python after scl above
@@ -46,13 +52,14 @@
       remote_src: yes
       mode: 0755
 
+  - name: Install helm
+    unarchive: 
+      src: https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
 
-  # - name: Insert Index Page
-  #   template:
-  #     src: templates/index.j2
-  #     dest: /usr/share/nginx/html/index.html
-
-  # - name: Start NGiNX
-  #   service:
-  #     name: nginx
-  #     state: started
+  - name: copy rbac for helm eks
+  #https://eksworkshop.com/helm/deploy/
+    template:
+      src: templates/rbac.yaml
+      dest: /tmp/rbac.yaml
