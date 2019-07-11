@@ -15,7 +15,7 @@ resource "aws_route_table" "main-RouteTableAPublic" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main-internetgw.id
+    gateway_id = aws_internet_gateway.main-gw.id
   }
 
   tags = {
@@ -27,7 +27,7 @@ resource "aws_route_table" "main-RouteTableBPublic" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main-internetgw.id
+    gateway_id = aws_internet_gateway.main-gw.id
   }
 
   tags = {
@@ -39,7 +39,7 @@ resource "aws_route_table" "main-RouteTableCPublic" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main-internetgw.id
+    gateway_id = aws_internet_gateway.main-gw.id
   }
 
   tags = {

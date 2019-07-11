@@ -38,9 +38,9 @@ module "eks" {
       # aws_subnet.main-SubnetAPrivate.id,
       # aws_subnet.main-SubnetBPrivate.id,
       # aws_subnet.main-SubnetCPrivate.id,
-      aws_subnet.main-SubnetAPublic.id,
-      aws_subnet.main-SubnetBPublic.id,
-      aws_subnet.main-SubnetCPublic.id
+      aws_subnet.main-public-1.id,
+      aws_subnet.main-public-2.id,
+      aws_subnet.main-public-3.id
       
     ]
 
