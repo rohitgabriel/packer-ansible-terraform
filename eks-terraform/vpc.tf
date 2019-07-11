@@ -9,5 +9,6 @@ resource "aws_vpc" "main" {
   enable_classiclink   = "false"
   tags = {
     Name = "main"
+    "kubernetes.io/cluster/uat-UQrfO" = "shared"
   }
 }

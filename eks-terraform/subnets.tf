@@ -9,6 +9,7 @@ resource "aws_subnet" "main-public-1" {
 
   tags = {
     Name = "main-public-1"
+    "kubernetes.io/cluster/uat-UQrfO" = "shared"
   }
 }
 
@@ -20,6 +21,7 @@ resource "aws_subnet" "main-public-2" {
 
   tags = {
     Name = "main-public-2"
+    "kubernetes.io/cluster/uat-UQrfO" = "shared"
   }
 }
 
@@ -31,6 +33,7 @@ resource "aws_subnet" "main-public-3" {
 
   tags = {
     Name = "main-public-3"
+    "kubernetes.io/cluster/uat-UQrfO" = "shared"
   }
 }
 
