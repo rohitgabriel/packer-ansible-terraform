@@ -12,5 +12,8 @@ resource "helm_release" "sampleapp" {
     #     name  = "mariadbUser"
     #     value = "foo"
     # }
+    values = [
+    "${file("/home/ubuntu/sample-openliberty/sample-helmchart/values.yaml")}"
+    ]
 
 }
