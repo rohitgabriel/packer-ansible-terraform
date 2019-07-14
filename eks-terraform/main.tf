@@ -35,13 +35,12 @@ module "eks" {
   cluster_name = local.cluster_name
   
   subnets      = [
+      aws_subnet.main-public-1.id,
+      aws_subnet.main-public-2.id,
+      aws_subnet.main-public-3.id,
       aws_subnet.main-private-1.id,
       aws_subnet.main-private-2.id,
-      aws_subnet.main-private-3.id,
-      #aws_subnet.main-public-1.id,
-      #aws_subnet.main-public-2.id,
-      #aws_subnet.main-public-3.id
-      
+      aws_subnet.main-private-3.id
     ]
 
   tags = {

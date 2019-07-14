@@ -4,7 +4,7 @@ variable "region" {
 
 
 variable "instance-type" {
-  default = "t2.medium"
+  default = "m5.large"
 }
 
 # variable "map_accounts" {
