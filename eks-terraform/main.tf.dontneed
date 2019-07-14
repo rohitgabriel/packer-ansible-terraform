@@ -37,10 +37,10 @@ module "eks" {
   subnets      = [
       aws_subnet.main-public-1.id,
       aws_subnet.main-public-2.id,
-      aws_subnet.main-public-3.id,
-      aws_subnet.main-private-1.id,
-      aws_subnet.main-private-2.id,
-      aws_subnet.main-private-3.id
+      aws_subnet.main-public-3.id
+      # aws_subnet.main-private-1.id,
+      # aws_subnet.main-private-2.id,
+      # aws_subnet.main-private-3.id
     ]
 
   tags = {
@@ -50,7 +50,7 @@ module "eks" {
   }
 
   vpc_id = aws_vpc.main.id
-  security_group_ids = ["${aws_security_group.uat-cluster_to_nodes.id}"]
+
 
   worker_groups = [
     {
