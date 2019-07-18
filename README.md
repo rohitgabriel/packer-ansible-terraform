@@ -74,3 +74,14 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=pipeline'
 ```
 
+## AWX notes
+```
+cd ~
+git clone https://github.com/ansible/awx.git
+cd installer 
+vi inventory
+Update the following:
+ kubernetes_context=eks_<cluster name>
+ kubernetes_namespace=awx
+ansible-playbook -i inventory install.yml
+```
