@@ -74,6 +74,21 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=pipeline'
 ```
 
+## Set up helm
+```
+# Notes https://eksworkshop.com/helm/deploy/
+# kubectl apply -f helm-rbac.yml
+# helm init --service-account tiller
+```
+
+## Set up ALB ingress controller
+```
+# Notes https://eksworkshop.com/exposing_service/ingress_controller_alb/
+# https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.0.0/docs/examples/rbac-role.yaml
+# curl -sS "https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.0.0/docs/examples/alb-ingress-controller.yaml" > alb-ingress-controller.yaml
+```
+
 ## AWX notes
 ```
 cd ~
@@ -85,3 +100,5 @@ Update the following:
  kubernetes_namespace=awx
 ansible-playbook -i inventory install.yml
 ```
+
+
