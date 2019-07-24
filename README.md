@@ -74,6 +74,12 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=pipeline'
 ```
 
+## Install and configure gitlab-runner with ansible
+```
+cd packer-ansible-terraform
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-runner-playbook.yml --extra-vars 'variable_host=pipeline'
+```
+
 ## Set up helm
 ```
 # Notes https://eksworkshop.com/helm/deploy/
