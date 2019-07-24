@@ -70,7 +70,7 @@ ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/
 ## Install and configure gitlab with ansible
 ```
 cd packer-ansible-terraform
-ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=pipeline'
+ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-configure-playbook.yml --extra-vars 'variable_host=pipeline'
 ansible-playbook -u 'centos' -i ansible-terraform/hosts.yml --private-key /home/ubuntu/keys/mykey ansible-terraform/gitlab-install-playbook.yml --extra-vars 'variable_host=pipeline'
 ```
 
